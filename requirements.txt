@@ -4,3 +4,5 @@ scikit-learn
 praw
 requests
 beautifulsoup4
+kaggle
+matplotlib
