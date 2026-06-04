@@ -19,8 +19,8 @@ To ensure reproducibility across all team members, we use a strict environment s
 1. **Clone the Repository:**
 
    ```bash
-   git clone <your-repo-url>
-   cd <your-repo-name>
+   git clone https://github.com/karthik-yale/EarlySlangDetection.git
+   cd EarlySlangDetection
    ```
 
 2. **Create and Activate a Conda Environment:**
@@ -39,7 +39,7 @@ To ensure reproducibility across all team members, we use a strict environment s
    ```
 
 4. **Authentication (Mandatory):**
-   Because we do not commit secrets to GitHub, you must create a `.env` file in the root directory.
+   Because we do not commit secret API keys, you must create a `.env` file in the root directory.
 
    * Download your `kaggle.json` from your Kaggle account settings.
 
