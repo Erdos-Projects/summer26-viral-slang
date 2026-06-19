@@ -1,6 +1,8 @@
 # Ignore all data files
 data/raw/*
 data/processed/*
+src/data/raw/*
+src/data/processed/*
 
 # Keep the data folders themselves intact by keeping this hidden file
 !data/raw/.gitkeep
