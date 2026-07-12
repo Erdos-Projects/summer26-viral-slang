@@ -6,3 +6,6 @@ requests
 beautifulsoup4
 kaggle
 matplotlib
+seaborn
+statsmodels
+xgboost
