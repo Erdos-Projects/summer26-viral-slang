@@ -1,9 +1,9 @@
 # Project: Early Signal Detection of Viral Internet Slang
 
-Alejandro Vargas-Altamirano
-Hargun Bhatia
-Jameson Auger
-Karthik Srinivasan
+Alejandro Vargas-Altamirano,
+Hargun Bhatia,
+Jameson Auger,
+Karthik Srinivasan, and
 Yasir Khan
 
 ## 1. Problem Definition
