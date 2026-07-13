@@ -75,9 +75,13 @@ We evaluate success using the following metrics to account for the highly imbala
 ## 6. Folder Structure
 
 \src\ - All Python scripts and Jupyter Notebooks
+
 --\EDA\ - All exploratory data analysis
+
 --\Experimental Models\ - Two attempts at modeling that had promising results but did not become our final maodel
+
 --\Final Model\ - out final model, including the hyperparameter tuning and comparison against other models that lead to it
+
 
 \data\ - All raw data used in the project
 
