@@ -1,14 +1,20 @@
 # Project: Early Signal Detection of Viral Internet Slang
 
+Alejandro Vargas-Altamirano
+Hargun Bhatia
+Jameson Auger
+Karthik Srinivasan
+Yasir Khan
+
 ## 1. Problem Definition
 
-* **The Question:** Can we predict if a specific word token will cross the 99th percentile of relative usage frequency within a 7-day window?
+* **The Question:** Can we predict if a specific word token will go viral over the next 3 weeks, which for this project is defined as the relative frequency of the word's usage doubling compared to a baseline.
 
 * **Decision Impact:** This analysis informs how social media platforms and brand marketers identify emerging cultural trends before they reach saturation.
 
-* **Unit of Analysis:** A unique, clustered word token observed over a specific 24-hour window.
+* **Unit of Analysis:** A unique, clustered word token observed over a 20 week window
 
-* **Scope & Boundaries:** Analysis is limited to English-language text from selected subreddits; time horizon is restricted to the available Kaggle historical data.
+* **Scope & Boundaries:** Analysis is limited to English-language text from selected Youtube channel's comment sections. For this project all of the chosen channels are gaming focused.
 
 * **Anti-Goals:** This project will **not** address live real-time stream processing, sentiment analysis of the slang, or a front-end dashboard.
 
@@ -38,54 +44,41 @@ To ensure reproducibility across all team members, we use a strict environment s
    pip install -r requirements.txt
    ```
 
-4. **Authentication (Mandatory):**
-   Because we do not commit secret API keys, you must create a `.env` file in the root directory.
-
-   * Download your `kaggle.json` from your Kaggle account settings.
-
-   * Create a `.env` file and add your credentials:
-
-   ```text
-   KAGGLE_USERNAME=your_username_here
-   KAGGLE_KEY=your_alphanumeric_key_here
-   ```
 
 ## 3. Data Acquisition
 
-We are currently using a Kaggle dataset as our primary source while Reddit API approvals are pending.
+Data was collected from Youtube using the Youtube Data API v3. The dataset includes the top 100 comments (by likes) from the most recent n videos from a particular channel, where n varies based on channel, but is often around 500 videos.
 
-* **Source Identifier:** `pavellexyr/the-reddit-dataset-dataset`.
-
-* **Provenance:** Data is pulled via the official Kaggle API; scripts log timestamps and download status to `/logs`.
-
-* **Execution:**
-  Run the following script to download and unzip the raw CSV directly into your local `data/raw/` folder:
-
-  ```bash
-  python src/data/load_kaggle_data.py
-  ```
+The specific data collected was the text of the comment, the number of likes the comment received, the date the comment was published, the video id, and the name of the channel the video was on.
 
 ## 4. Ethical & Legal Considerations
 
-* **Licensing:** This project adheres to the Kaggle dataset's specific license and Reddit's User Agreement.
+* **Licensing:** This project adheres to the Youtube API Terms of Service
 
 * **Privacy:** No Personally Identifiable Information (PII) is included in the modeling; we analyze aggregated word tokens, not individual users.
 
 ## 5. Preliminary KPIs (Key Performance Indicators)
 
-We evaluate success using the following metrics to account for the highly imbalanced nature of viral events:
+We evaluate success using the following metrics to account for the highly imbalanced nature of viral events. The first four are used to evaluate the models for regression (estimating the change in relative frequency), and the next four are for classification (will a word more than double in relative frequency).
 
-| Metric | Type | Purpose | 
-| ----- | ----- | ----- | 
-| **F1-Score** | Primary | Balances precision and recall for the "Viral" class. | 
-| **ROC-AUC** | Primary | Evaluates the model's ability to distinguish between duds and breakouts. | 
-| **Precision** | Secondary | Measures how many flagged words actually went viral (minimizing false alarms). | 
-| **Recall** | Secondary | Measures how many actual viral trends the model successfully caught. | 
 
-## 6. Baseline Modeling
+* **Root Mean Squared Error**
+* **R^2**
+* **Spearman Correlation**
+* **Pearson Correlation**
 
-All baseline experiments are recorded in `notebooks/baseline.ipynb`.
+* **F1-Score** 
+* **ROC-AUC**
+* **Precision**
+* **Recall**
 
-* **Baseline Models:** `DummyClassifier`, `LogisticRegression`, and `RandomForestClassifier`.
+## 6. Folder Structure
 
-* **Validation:** All baselines are evaluated using 5-fold cross-validation (`KFold`) to ensure learnability.
+\src\ - All Python scripts and Jupyter Notebooks
+--\EDA\ - All exploratory data analysis
+--\Experimental Models\ - Two attempts at modeling that had promising results but did not become our final maodel
+--\Final Model\ - out final model, including the hyperparameter tuning and comparison against other models that lead to it
+
+\data\ - All raw data used in the project
+
+\Output\ - Graphs and figures created from Jupyter notebooks from src that were found to be important or were used in the presentation.
